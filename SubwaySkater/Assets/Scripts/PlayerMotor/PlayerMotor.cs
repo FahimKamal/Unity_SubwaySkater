@@ -44,6 +44,22 @@ public class PlayerMotor : MonoBehaviour
         controller.Move(moveVector * Time.deltaTime);
     }
 
+    public float SnapToLane()
+    {
+        var r = 0.0f;
+
+        if (transform.position.x != (currentLane * distanceInBetweenLanes)) // If we\re not directly on top of a lane
+        {
+            
+        }
+        else
+        {
+            r = 0.0f;
+        }
+        
+        return r;
+    }
+
     public void ChangeLane(int direction)
     {
         currentLane = Mathf.Clamp(currentLane + direction, -1, 1);
