@@ -964,6 +964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1447828302}
   - component: {fileID: 1447828301}
+  - component: {fileID: 1447828303}
   m_Layer: 0
   m_Name: World Generator
   m_TagString: Untagged
@@ -1005,6 +1006,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1447828303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447828300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca6a62e8e2ca3446bafe6326c054ff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstChunkSpawnPos: 10
+  chunkOnScreen: 14
+  deSpawnDistance: 5
+  chunkPrefabs:
+  - {fileID: 9038227783488850508, guid: ef3ccf3f27ac8e24e8d4ca2cde6faf94, type: 3}
+  - {fileID: 9038227783488850508, guid: c17a43a3310a9a245815119f920703e9, type: 3}
+  - {fileID: 9038227783488850508, guid: b83277e358b158247ad85ea490445147, type: 3}
+  camTransform: {fileID: 961739753}
 --- !u!1001 &1549132529
 PrefabInstance:
   m_ObjectHideFlags: 0
