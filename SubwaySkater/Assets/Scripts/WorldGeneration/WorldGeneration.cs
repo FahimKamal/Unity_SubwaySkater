@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class WorldGeneration : MonoBehaviour
@@ -33,6 +31,8 @@ public class WorldGeneration : MonoBehaviour
             camTransform = Camera.main.transform;
             Log("We've assigned cameraTransform automatically to the Camera.main");
         }
+        
+        ResetWorld();
     }
 
     private void Update()
@@ -57,7 +57,7 @@ public class WorldGeneration : MonoBehaviour
         var randomIndex = Random.Range(0, chunkPrefabs.Count);
 
         // Dose it already exist within our pool
-        Chunk chunk = null;
+        Chunk chunk = _chunkPool.Find(x => !x.gameObject.activeSelf && x.name == (chunkPrefabs[randomIndex].name + "(Clone)"));
         
         // Create a chunk, if were not able to find one to reuse
         if (!chunk)
@@ -67,16 +67,38 @@ public class WorldGeneration : MonoBehaviour
         }
 
         // Place the object and show it
+        chunk.transform.position = new Vector3(0, 0, _chunkSpawnZ);
+        _chunkSpawnZ += chunk.chuckLength;
+        
+        // Store the value, to reuse in our pool
+        _activeChunks.Enqueue(chunk);
+        chunk.ShowChunk();
     }
 
     private void DeleteLastChunk()
     {
-        
+        var chunk = _activeChunks.Dequeue();
+        chunk.HideChunk();
+        _chunkPool.Add(chunk);
     }
 
     private void ResetWorld()
     {
-        
+        // Reset the chunkSpawn Z
+        _chunkSpawnZ = firstChunkSpawnPos;
+
+        // Deactivate all active chunks and send them in pool
+        for (var i = _activeChunks.Count; i != 0; i--)
+        {
+            DeleteLastChunk();
+        }
+
+
+        // Spawn new chunks from first chunk spawn position.
+        for (var i = 0; i < chunkOnScreen; i++)
+        {
+            SpawnNewChunk();
+        }
     }
 
     private void Log(string message)
