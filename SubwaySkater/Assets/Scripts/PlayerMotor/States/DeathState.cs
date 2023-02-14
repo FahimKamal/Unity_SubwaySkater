@@ -23,7 +23,6 @@ public class DeathState : BaseState
 
     public override Vector3 ProcessMotion()
     {
-        Debug.Log("Death");
         var m = knockBackForce;
 
         knockBackForce = new Vector3(

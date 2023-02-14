@@ -3,6 +3,7 @@ public class GameStateDeath : GameState
     public override void Construct()
     {
         base.Construct();
+        GameManager.Instance.motor.PausePlayer();
     }
 
     public override void Destruct()
@@ -19,16 +20,17 @@ public class GameStateDeath : GameState
 
         if (InputManager.Instance.SwipeUp)
         {
-            ResumeGame();
+            RespawnGame();
         }
     }
 
-    public void ResumeGame()
+    public void RespawnGame()
     {
-        
+        GameManager.Instance.motor.RespawnPlayer();
+        Brain.ChangeState(GetComponent<GameStateGame>());
     }
     public void ToMenu()
     {
-        
+        Brain.ChangeState(GetComponent<GameStateinit>());
     }
 }

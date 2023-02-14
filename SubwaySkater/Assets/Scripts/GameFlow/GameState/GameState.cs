@@ -8,7 +8,21 @@ public abstract class GameState : MonoBehaviour
         Brain = GetComponent<GameManager>();
     }
 
-    public virtual void Construct() { }     // Will be called once we enter the state.
-    public virtual void Destruct() { }      // Will be called once we leave the state.
-    public virtual void UpdateState() { }    // Will be called continuously in update loop.
+    /// <summary>
+    /// // Will be called once we enter the state.
+    /// </summary>
+    public virtual void Construct()
+    {
+        Debug.Log("Constructing : " + this);
+    }    
+    
+    /// <summary>
+    /// Will be called once we leave the state.
+    /// </summary>
+    public virtual void Destruct() { }    
+    
+    /// <summary>
+    /// Will be called continuously in update loop.
+    /// </summary>
+    public virtual void UpdateState() { }   
 }

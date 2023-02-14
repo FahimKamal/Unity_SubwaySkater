@@ -121,4 +121,9 @@ public class PlayerMotor : MonoBehaviour
                 ChangeState(GetComponent<DeathState>());
         }
     }
+
+    public void RespawnPlayer()
+    { 
+        ChangeState(GetComponent<RespawnState>());
+    }
 }
