@@ -14,12 +14,16 @@ public class PlayerMotor : MonoBehaviour
     public float terminalVelocity = 20.0f;
 
     public CharacterController controller;
+    public Animator anim;
 
     private BaseState _state;
+    private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
+    private static readonly int Speed = Animator.StringToHash("Speed");
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
         _state = GetComponent<RunningState>();
         _state.Construct();
     }
@@ -39,6 +43,10 @@ public class PlayerMotor : MonoBehaviour
         
         // are we trying to change state?
         _state.Transition();
+        
+        // Feed animator necessary values
+        anim.SetBool(IsGrounded, isGrounded);
+        anim.SetFloat(Speed, Mathf.Abs(moveVector.z));
         
         // Move the player
         controller.Move(moveVector * Time.deltaTime);

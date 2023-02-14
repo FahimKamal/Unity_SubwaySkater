@@ -9,8 +9,12 @@ public class SlidingState : BaseState
     private Vector3 _initialCenter;
     private float _initialSize;
     private float _slideStart;
+    private static readonly int Slide = Animator.StringToHash("Slide");
+    private static readonly int Running = Animator.StringToHash("Running");
+
     public override void Construct()
     {
+        Motor.anim!.SetTrigger(Slide);
         _slideStart = Time.time;
 
         _initialSize = Motor.controller.height;
@@ -22,6 +26,7 @@ public class SlidingState : BaseState
 
     public override void Destruct()
     {
+        Motor.anim!.SetTrigger(Running);
         Motor.controller.height = _initialSize;
         Motor.controller.center = _initialCenter;
     }

@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class FallingState : BaseState
 {
+    private static readonly int Fall = Animator.StringToHash("Fall");
+
+    public override void Construct()
+    {
+        Motor.anim!.SetTrigger(Fall);
+    }
+
     public override void Transition()
     {
         if (Motor.isGrounded)

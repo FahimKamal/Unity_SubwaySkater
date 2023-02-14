@@ -4,9 +4,12 @@ using UnityEngine;
 public class JumpingState : BaseState
 {
     public float jumpForce = 7.0f;
+    private static readonly int Jump = Animator.StringToHash("Jump");
+
     public override void Construct()
     {
         Motor.verticalVelocity = jumpForce;
+        Motor.anim!.SetTrigger(Jump);
     }
 
     public override void Destruct()
