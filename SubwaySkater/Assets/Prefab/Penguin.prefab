@@ -26,8 +26,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.54, z: 3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.54, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -644,6 +644,7 @@ GameObject:
   - component: {fileID: 1844297163984708677}
   - component: {fileID: 3116816841692120305}
   - component: {fileID: 866116884358397937}
+  - component: {fileID: 1037843257433844475}
   m_Layer: 0
   m_Name: Penguin
   m_TagString: Untagged
@@ -730,6 +731,7 @@ MonoBehaviour:
   gravity: 14
   terminalVelocity: 20
   controller: {fileID: 4595876451671441536}
+  anim: {fileID: 0}
 --- !u!114 &4440938662187200286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,6 +782,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideDuration: 1
+--- !u!114 &1037843257433844475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7019624534355612977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1345c1fcb9d6442b1af125e9eb38a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7019624534355612979
 GameObject:
   m_ObjectHideFlags: 0

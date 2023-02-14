@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
@@ -17,6 +18,8 @@ public class PlayerMotor : MonoBehaviour
     public Animator anim;
 
     private BaseState _state;
+    private bool _isPaused = true;
+    
     private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
     private static readonly int Speed = Animator.StringToHash("Speed");
 
@@ -30,7 +33,9 @@ public class PlayerMotor : MonoBehaviour
 
     private void Update()
     {
-        UpdateMotor();
+        if (!_isPaused)
+            UpdateMotor();
+        
     }
 
     private void UpdateMotor()
@@ -94,6 +99,26 @@ public class PlayerMotor : MonoBehaviour
         if (verticalVelocity < -terminalVelocity)
         {
             verticalVelocity = -terminalVelocity;
+        }
+    }
+
+    public void PausePlayer()
+    {
+        _isPaused = true;
+    }
+
+    public void ResumePlayer()
+    {
+        _isPaused = false;
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        var hitLayerName = LayerMask.LayerToName(hit.gameObject.layer);
+
+        if (hitLayerName == "Death")
+        {
+                ChangeState(GetComponent<DeathState>());
         }
     }
 }
