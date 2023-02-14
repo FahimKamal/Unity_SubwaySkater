@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class RunningState : BaseState
 {
+    public override void Construct()
+    {
+        Motor.verticalVelocity = 0;
+    }
+
     public override void Transition()
     {
         if (InputManager.Instance.SwipeLeft)
@@ -18,7 +23,12 @@ public class RunningState : BaseState
         if (InputManager.Instance.SwipeUp && Motor.isGrounded)
         {
             // Change to jumping state
-            //Motor.ChangeState(GetComponent<JumpingState>());
+            Motor.ChangeState(GetComponent<JumpingState>());
+        }
+
+        if (!Motor.isGrounded)
+        {
+            Motor.ChangeState(GetComponent<FallingState>());
         }
     }
 
