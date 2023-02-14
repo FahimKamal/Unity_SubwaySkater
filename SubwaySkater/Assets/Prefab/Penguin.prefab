@@ -643,6 +643,7 @@ GameObject:
   - component: {fileID: 4440938662187200286}
   - component: {fileID: 1844297163984708677}
   - component: {fileID: 3116816841692120305}
+  - component: {fileID: 866116884358397937}
   m_Layer: 0
   m_Name: Penguin
   m_TagString: Untagged
@@ -702,7 +703,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1
   m_Radius: 0.25
-  m_SlopeLimit: 45
+  m_SlopeLimit: 50
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -766,6 +767,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba1286369a64a04fb6cf209061c33bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &866116884358397937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7019624534355612977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c14b31c413748f41aca5a6618502c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slideDuration: 1
 --- !u!1 &7019624534355612979
 GameObject:
   m_ObjectHideFlags: 0

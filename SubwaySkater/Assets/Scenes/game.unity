@@ -1137,11 +1137,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4595876451671441536, guid: 15008afa5b7d0f049b38ad58bb1d752b,
-        type: 3}
-      propertyPath: m_SlopeLimit
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 7019624534355612977, guid: 15008afa5b7d0f049b38ad58bb1d752b,
         type: 3}
       propertyPath: m_Name

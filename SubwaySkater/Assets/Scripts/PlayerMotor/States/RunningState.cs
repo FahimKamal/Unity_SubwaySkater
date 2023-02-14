@@ -25,6 +25,12 @@ public class RunningState : BaseState
             // Change to jumping state
             Motor.ChangeState(GetComponent<JumpingState>());
         }
+        
+        if (InputManager.Instance.SwipeDown)
+        {
+            // Change to sliding state
+            Motor.ChangeState(GetComponent<SlidingState>());
+        }
 
         if (!Motor.isGrounded)
         {
