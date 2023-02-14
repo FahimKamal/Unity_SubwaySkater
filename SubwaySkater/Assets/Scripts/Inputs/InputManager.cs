@@ -10,6 +10,9 @@ public class InputManager : MonoBehaviour
     private RunnerInputAction _actionScheme;
     
     // Configuration
+    /// <summary>
+    /// Minimum lenght to swipe to consider it a swipe.
+    /// </summary>
     [SerializeField] private float sqrSwipeDeadZone = 50.0f;
 
     #region Private properties
@@ -59,7 +62,7 @@ public class InputManager : MonoBehaviour
 
     private void OnEndDrag(InputAction.CallbackContext ctx)
     {
-        var delta = TouchPosition = _startDrag;
+        var delta = TouchPosition - _startDrag;
         var sqrDistance = delta.sqrMagnitude;
 
         if (sqrDistance > sqrSwipeDeadZone)

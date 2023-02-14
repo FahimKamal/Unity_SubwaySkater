@@ -47,10 +47,18 @@ public class PlayerMotor : MonoBehaviour
     public float SnapToLane()
     {
         var r = 0.0f;
-
+        
         if (transform.position.x != (currentLane * distanceInBetweenLanes)) // If we\re not directly on top of a lane
         {
-            
+            var deltaToDesiredPosition = (currentLane * distanceInBetweenLanes) - transform.position.x;
+            r = (deltaToDesiredPosition > 0) ? 1 : -1;
+            r *= baseSideWaySpeed;
+
+            var actualDistance = r * Time.deltaTime;
+            if (Mathf.Abs(actualDistance) > Mathf.Abs(deltaToDesiredPosition))
+            {
+                r = deltaToDesiredPosition * (1 / Time.deltaTime);
+            }
         }
         else
         {

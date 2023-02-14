@@ -26,7 +26,7 @@ public class RunningState : BaseState
     {
         var m = Vector3.zero;
 
-        m.x = 0f;
+        m.x = Motor.SnapToLane();
         m.y = -1.0f;
         m.z = Motor.baseRunSpeed;
 
