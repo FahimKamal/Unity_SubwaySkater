@@ -3,12 +3,14 @@ using UnityEngine;
 public class DeathState : BaseState
 {
     [SerializeField] private Vector3 knockBackForce = new Vector3(0, 4, -3);
+    private Vector3 _currentKnockBack;
     
     private static readonly int Death = Animator.StringToHash("Death");
 
     public override void Construct()
     {
         Motor.anim!.SetTrigger(Death);
+        _currentKnockBack = knockBackForce;
     }
 
     public override void Destruct()
@@ -23,19 +25,19 @@ public class DeathState : BaseState
 
     public override Vector3 ProcessMotion()
     {
-        var m = knockBackForce;
+        var m = _currentKnockBack;
 
-        knockBackForce = new Vector3(
+        _currentKnockBack = new Vector3(
             0, 
-            knockBackForce.y -= Motor.gravity * Time.deltaTime,
-            knockBackForce.z += 2.0f * Time.deltaTime
+            _currentKnockBack.y -= Motor.gravity * Time.deltaTime,
+            _currentKnockBack.z += 2.0f * Time.deltaTime
             );
-        if (knockBackForce.z > 0)
+        if (_currentKnockBack.z > 0)
         {
-            knockBackForce.z = 0;
+            _currentKnockBack.z = 0;
             GameManager.Instance.ChangeState(GameManager.Instance.GetComponent<GameStateDeath>());
         }
         
-        return knockBackForce;
+        return _currentKnockBack;
     }
 }

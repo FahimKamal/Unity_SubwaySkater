@@ -2,6 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+public enum GameCamera
+{
+    Init, Game, Shop, Respawn
+}
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
@@ -11,6 +16,11 @@ public class GameManager : MonoBehaviour
     }
 
     public PlayerMotor motor;
+    public WorldGenerator worldGenerator;
+    public SceneChunkGenerator SceneChunkGenerator;
+
+    public GameObject[] cameras;
+    
     private GameState _state;
     private void Awake()
     {
@@ -30,5 +40,14 @@ public class GameManager : MonoBehaviour
         _state.Destruct();
         _state = s;
         _state.Construct();
+    }
+
+    public void ChangeCamera(GameCamera c)
+    {
+        foreach (var go in cameras)
+        {
+            go.SetActive(false);
+        }
+        cameras[(int)c].SetActive(true);
     }
 }

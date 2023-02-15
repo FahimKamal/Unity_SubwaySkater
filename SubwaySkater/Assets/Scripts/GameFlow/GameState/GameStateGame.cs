@@ -4,6 +4,7 @@ public class GameStateGame : GameState
     {
         base.Construct();
         GameManager.Instance.motor.ResumePlayer();
+        GameManager.Instance.ChangeCamera(GameCamera.Game);
     }
 
     public override void Destruct()
@@ -13,6 +14,7 @@ public class GameStateGame : GameState
 
     public override void UpdateState()
     {
-        base.UpdateState();
+        GameManager.Instance.worldGenerator.ScanPosition();
+        GameManager.Instance.SceneChunkGenerator.ScanPosition();
     }
 }

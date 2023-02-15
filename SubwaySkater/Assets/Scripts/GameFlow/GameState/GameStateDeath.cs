@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class GameStateDeath : GameState
 {
     public override void Construct()
@@ -26,11 +28,15 @@ public class GameStateDeath : GameState
 
     public void RespawnGame()
     {
-        GameManager.Instance.motor.RespawnPlayer();
         Brain.ChangeState(GetComponent<GameStateGame>());
+        GameManager.Instance.motor.RespawnPlayer();
     }
     public void ToMenu()
     {
         Brain.ChangeState(GetComponent<GameStateinit>());
+
+        GameManager.Instance.motor.ResetPlayer();
+        GameManager.Instance.worldGenerator.ResetWorld();
+        GameManager.Instance.SceneChunkGenerator.ResetWorld();
     }
 }

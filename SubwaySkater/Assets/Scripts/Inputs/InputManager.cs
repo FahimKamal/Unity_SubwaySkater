@@ -73,16 +73,28 @@ public class InputManager : MonoBehaviour
             if (x > y) // Left or Right
             {
                 if (delta.x > 0)
+                {
                     SwipeRight = true;
+                    Debug.Log("Swipe Right occurred.");
+                }
                 else
+                {
                     SwipeLeft = true;
+                    Debug.Log("Swipe left occurred.");
+                }
             }
             else // Up or Down
             {
                 if (delta.y > 0)
+                {
                     SwipeUp = true;
+                    Debug.Log("Swipe Up occurred.");
+                }
                 else
+                {
                     SwipeDown = true;
+                    Debug.Log("Swipe Down occurred.");
+                }
             }
         }
 
@@ -102,6 +114,7 @@ public class InputManager : MonoBehaviour
     private void OnTap(InputAction.CallbackContext ctx)
     {
         Tap = true;
+        Debug.Log("Single Tap occurred.");
     }
 
     private void OnEnable()

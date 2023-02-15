@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class WorldGeneration : MonoBehaviour
+public class WorldGenerator : MonoBehaviour
 {
     // Configurable Fields
     [SerializeField] private int firstChunkSpawnPos = -10;
@@ -35,12 +35,7 @@ public class WorldGeneration : MonoBehaviour
         ResetWorld();
     }
 
-    private void Update()
-    {
-        ScanPosition();
-    }
-
-    private void ScanPosition()
+    public void ScanPosition()
     {
         var cameraZ = camTransform.transform.position.z;
         var lastChunk = _activeChunks.Peek();
@@ -82,7 +77,7 @@ public class WorldGeneration : MonoBehaviour
         _chunkPool.Add(chunk);
     }
 
-    private void ResetWorld()
+    public void ResetWorld()
     {
         // Reset the chunkSpawn Z
         _chunkSpawnZ = firstChunkSpawnPos;

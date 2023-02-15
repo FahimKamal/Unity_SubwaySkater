@@ -22,6 +22,7 @@ public class PlayerMotor : MonoBehaviour
     
     private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
     private static readonly int Speed = Animator.StringToHash("Speed");
+    private static readonly int Idle = Animator.StringToHash("Idle");
 
     private void Start()
     {
@@ -35,7 +36,6 @@ public class PlayerMotor : MonoBehaviour
     {
         if (!_isPaused)
             UpdateMotor();
-        
     }
 
     private void UpdateMotor()
@@ -111,6 +111,12 @@ public class PlayerMotor : MonoBehaviour
     {
         _isPaused = false;
     }
+    
+    public void RespawnPlayer()
+    { 
+        ChangeState(GetComponent<RespawnState>());
+        GameManager.Instance.ChangeCamera(GameCamera.Respawn);
+    }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -121,9 +127,13 @@ public class PlayerMotor : MonoBehaviour
                 ChangeState(GetComponent<DeathState>());
         }
     }
-
-    public void RespawnPlayer()
-    { 
-        ChangeState(GetComponent<RespawnState>());
+    
+    public void ResetPlayer()
+    {
+        currentLane = 0;
+        transform.position = new Vector3(0, 0, 5);
+        anim.SetTrigger(Idle);
+        ChangeState(GetComponent<RunningState>());
+        PausePlayer();
     }
 }
